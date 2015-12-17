@@ -12,24 +12,24 @@
         }
         body{
             font-size:16px;
-            background:#f0f0f0;
+            /*background:#f0f0f0;*/
         }
-        #container{
+        .container{
             max-width:640px;
             margin:0 auto;
             background-color:#f0f0f0;
         }
-        #wrapper{
+        .main-wrap{
             width:100%;
             position:relative;
         }
-        #header{
+        .g-header{
             width:100%;
             padding:5.5% 0;
             position:relative;
             background-color:#29bde0;
         }
-        #header img{
+        .g-header img{
             max-width:100%;
             position:absolute;
             left:2.5%;
@@ -42,11 +42,18 @@
             background-color:#f0f0f0;
             padding:1.18% 0;
         }
+        #bg{width:100%;
+            background-color:#f0f0f0;
+            padding:63% 0;
+            position:relative;
+        }
         #content{
             width:88.75%;
-            padding:45% 0;
+
             position:absolute;
-            left:5.7%
+            top:0;
+            left:5.7%;
+
         }
         #tittle{
             width:100%;
@@ -114,40 +121,170 @@
         position:absolute;
         bottom:1%;
         left:40%;}
+        /*运动*/
+
+        .g-sidenav{
+            width:51.4%;
+            height:88.6%;
+            position:fixed;
+            bottom:0;
+            z-index: -1;
+        }
+        .g-sidenav .m-nav-list{
+            width: 100%;
+        }
+        .g-sidenav .m-nav-list li{/*  every item  */
+            position: relative;
+            height: 79px;
+            padding-left: 106px;
+            padding-right: 50px;
+            border-bottom: 1px solid #d6d6d6;
+            font-size: 0; /*  clear inline-block bug  */
+            color: #29bed0;
+        }
+        .g-sidenav .m-nav-list li span{/* text  */
+            font-size: 1.5rem;
+            line-height: 79px;
     </style>
 </head>
 <body>
-<div id="container">
-    <div id="wrapper">
-        <div id="header">
-        <img src="images/sidebar.png">
+<div class="container">
+    <div class="main-wrap">
+        <div class="g-header">
+        <img class="side-imamge" src="images/sidebar.png">
         </div>
         <div class="sai"></div>
-        <div id="content">
-            <div id="tittle">
-                <h2>上次游戏：捉鬼猜词版</h2>
-                <img src="images/next.png">
-            </div>
-            <div id="main">
-                <h2>捉鬼游戏</h2>
-                <ul>
-                    <li class="column"><h3>简化版</h3></li>
-                    <li class="number"><h4>有1133个用户正在玩此款游戏</h4></li>
-                    <li class="column"><h3>猜词版</h3></li>
-                    <li class="number"><h4>有1133个用户正在玩此款游戏</h4></li>
-                    <li class="column"><h3>白痴版</h3></li>
-                    <li class="number"><h4>有1133个用户正在玩此款游戏</h4></li>
-                </ul>
-                <img class="right-side" src="images/right-side.png">
-                <img class="more" src="images/more.png">
-            </div>
-
+        <div id="bg">
+                <div id="content">
+                    <div id="tittle">
+                        <h2>上次游戏：捉鬼猜词版</h2>
+                        <img src="images/next.png">
+                    </div>
+                    <div id="main">
+                        <h2>捉鬼游戏</h2>
+                        <ul>
+                            <li class="column"><h3>简化版</h3></li>
+                            <li class="number"><h4>有1133个用户正在玩此款游戏</h4></li>
+                            <li class="column"><h3>猜词版</h3></li>
+                            <li class="number"><h4>有1133个用户正在玩此款游戏</h4></li>
+                            <li class="column"><h3>白痴版</h3></li>
+                            <li class="number"><h4>有1133个用户正在玩此款游戏</h4></li>
+                        </ul>
+                        <img class="right-side" src="images/right-side.png">
+                        <img class="more" src="images/more.png">
+                    </div>
+                </div>
         </div>
 
     </div>
-    <div id="sidenav">
+    <div class="g-sidenav">
+         <ul class="m-nav-list">
+            <li>
+                <span>公告</span>
 
+            </li>
+            <li>
+                <span>设置</span>
+            </li>
+            <li>
+                <span>帮助</span>
+            </li>
+            <li>
+
+                <span>关于</span>
+
+            </li>
+         </ul>
     </div>
+    <!--
+    <div id="sidenav">
+        <div><img src="images/6.png"><span>公告</span><img src="images/3.png"></div>
+        <div><img src="images/7.png"><span>设置</span><img src="images/3.png"></div>
+        <div><img src="images/8.png"><span>帮助</span><img src="images/3.png"></div>
+        <div><img src="images/9.png"><span>关于</span><img src="images/3.png"></div>
+    </div>-->
+    <script type="text/javascript" >function addLoadEvent (func){
+        // 函数调用
+        var oldonload = window.onload ;
+        if (typeof window.onload != "function"){
+            window.onload = func;
+        }else{
+            window.onload = function(){
+                oldonload();
+                func();
+            }
+        }
+    }
+
+    function showSideNav() {
+        // 滑出侧边栏
+        var mainBody = document.getElementsByClassName("main-wrap")[0];
+        var oBtn = mainBody.getElementsByClassName("g-header")[0].getElementsByTagName('i')[0];
+        // error // 获取类名  存储在外部的theClass 中得className本身没有被修改
+        // var theClass = mainBody.className;
+        // theClass = theClass.slice(-5);
+        // console.log(theClass);
+        mainBody.classJudge = mainBody.className.slice(-5);//尾部判断
+        // 点击事件
+        oBtn.onclick = function(){
+            // 判断类名
+            mainBody.classJudge = mainBody.classJudge == "slide" ? moveToLeft() : moveToRight() ;
+        }
+        function moveToRight(){
+            mainBody.className += " slide";//添加slide类名
+            slideElem("main-wrap", 75, 0, 20);
+            return mainBody.classJudge = mainBody.className.slice(-5);
+        }
+        function moveToLeft(){
+            slideElem("main-wrap", 0, 0, 20);
+            mainBody.className = mainBody.className.slice(0,-6);//删除slide类名
+            return mainBody.classJudge = mainBody.className.slice(-5);
+        }
+        if(mainBody.classJudge == "slide"){
+            alert("A");
+        }
+    }
+    function slideElem(elemClass, final_x, final_y, interval){
+        // 移动元素
+        // 获取元素坐标
+        var elem = document.getElementsByClassName(elemClass)[0];
+        if(elem.movement){
+            clearTimeout(elem.movement);
+        }
+        if(!elem.style.left){
+            elem.style.left	= "0px";
+        }
+        if(!elem.style.top){
+            elem.style.top	= "0px";
+        }
+        var xpos = parseInt(elem.style.left);
+        var ypos = parseInt(elem.style.top);
+        var dist = 0;
+        // 判断距离
+        xpos == final_x && true;
+        if(xpos < final_x){
+            dist = Math.ceil((final_x - xpos) / 10);
+            xpos += dist ;
+            // xpos ++;
+        }
+        if(xpos > final_x){
+            dist = Math.ceil((xpos - final_x) / 10);
+            xpos -= dist ;
+        }
+        // move
+        elem.style.left = xpos + "%";
+        var result = "slideElem('" + elemClass + "', " + final_x + ", " + final_y + ", " + interval + ")";
+        elem.movement = setTimeout(result, interval);
+    }
+    // addLoadEvent(slideElem("main-wrap", 75, 0 ,20));
+
+
+    addLoadEvent(showSideNav);
+
+
+
+
+    </script>
 </div>
 </body>
 </html>
